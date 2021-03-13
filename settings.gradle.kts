@@ -11,5 +11,6 @@ rootProject.name = "playground"
 
 
 include(":androidApp")
-include(":shared")
+include(":api")
 
+include(":model")
