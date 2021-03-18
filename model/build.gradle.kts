@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+    id("kotlinx-serialization")
     id("com.android.library")
 }
 
@@ -13,7 +14,12 @@ kotlin {
         }
     }
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                // Serialization
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
