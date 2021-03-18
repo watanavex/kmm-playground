@@ -2,19 +2,25 @@ package tech.watanave.kmm_playground.androidApp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import tech.watanave.kmm_playground.shared.Greeting
 import android.widget.TextView
-
-fun greet(): String {
-    return Greeting().greeting()
-}
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import tech.watanave.kmm_playground.api.ApiClient
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        lifecycleScope.launch {
+            val api = ApiClient()
+            val response = api.request("Kotlin")
+            println(response)
+        }
     }
 }
