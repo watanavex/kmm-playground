@@ -13,7 +13,7 @@ data class Repo(
     @SerialName("html_url")
     val htmlUrl: String,
     val description: String,
-    val language: String,
+    val language: String?,
     @SerialName("watchers_count")
     val watchersCount: Int,
     @SerialName("stargazers_count")
