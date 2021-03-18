@@ -1,4 +1,5 @@
 import UIKit
+import SharedApi
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -7,6 +8,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let apiClient = ApiClient()
+        apiClient.request(searchWord: "swift") { (response, error) in
+            if let response = response {
+                print(response)
+            }
+            if let error = error {
+                print(error)
+            }
+        }
         return true
     }
 
