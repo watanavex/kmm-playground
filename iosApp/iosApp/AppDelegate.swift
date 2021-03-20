@@ -4,19 +4,35 @@ import SharedApi
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
         let apiClient = ApiClient()
-        apiClient.request(searchWord: "swift") { (response, error) in
-            if let response = response {
-                print(response)
-            }
-            if let error = error {
-                print(error)
-            }
-        }
+        let iOSClient = IosClient(apiClient: apiClient)
+        iOSClient.requestFlow(searchWord: "kotlin")
+            .subscribe(
+                scope: iOSClient.scope,
+                onEach: { response in
+                    print("onEach", response)
+                },
+                onComplete: {
+                    print("onComplete")
+                },
+                onFailure: { error in
+                    print("Failure👎", error)
+                })
+        
+        iOSClient.request(searchWord: "swift")
+            .subscribe(
+                scope: iOSClient.scope,
+                onSuccess: { response in
+                    print("Success!!!", response)
+                },
+                onFailure: { error in
+                    print("Failure👎", error)
+                })
+//        job.cancel(cause: Kotlinx_coroutines_coreCancellationException(message: "Cancel"))
+        
         return true
     }
 
