@@ -3,17 +3,25 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("org.jetbrains.kotlin.native.cocoapods")
 }
 
 kotlin {
     android()
-    ios {
-        binaries {
-            framework {
-                baseName = "SharedApi"
-            }
+    ios()
+
+    version = "1.0.0"
+    cocoapods {
+        summary = "CocoaPods test library"
+        homepage = "https://github.com/JetBrains/kotlin"
+        ios.deploymentTarget = "13.2"
+        pod("AFNetworking") {
+            version = "~> 4.0.1"
         }
+
+        frameworkName = "SharedApi"
     }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
