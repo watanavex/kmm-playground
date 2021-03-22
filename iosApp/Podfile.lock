@@ -1,0 +1,16 @@
+PODS:
+  - api (1.0.0)
+
+DEPENDENCIES:
+  - api (from `../api`)
+
+EXTERNAL SOURCES:
+  api:
+    :path: "../api"
+
+SPEC CHECKSUMS:
+  api: 66f2e651c15329ef078304863eff2a34f4aa83de
+
+PODFILE CHECKSUM: deca37c75107ebea4fa55c07e5b313b7fc77d3b8
+
+COCOAPODS: 1.10.1
