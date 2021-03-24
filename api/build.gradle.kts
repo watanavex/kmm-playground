@@ -8,16 +8,7 @@ plugins {
 
 kotlin {
     android()
-//    ios()
-    if ((System.getenv("SDK_NAME") ?: "iphonesimulator").startsWith("iphoneos")) {
-        ios {
-            iosArm64()
-        }
-    } else {
-        ios {
-            iosX64()
-        }
-    }
+    ios()
 
     version = "1.0.0"
     group = "tech.watanave.kmm_playground.api"
