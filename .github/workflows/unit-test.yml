@@ -20,7 +20,7 @@ jobs:
         run: xcodebuild -version
       - uses: eskatos/gradle-command-action@v1
         with:
-          arguments: testDebugUnitTest
+          arguments: :api:podGenIOS
           dependencies-cache-key: |
             **/*.gradle
             **/*.gradle.kts
@@ -30,6 +30,15 @@ jobs:
       - uses: eskatos/gradle-command-action@v1
         with:
           arguments: iosX64Test
+          dependencies-cache-key: |
+            **/*.gradle
+            **/*.gradle.kts
+            buildSrc/src/**/*.kt
+            **/gradle.properties
+            gradle/**
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: testDebugUnitTest
           dependencies-cache-key: |
             **/*.gradle
             **/*.gradle.kts
