@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 onFailure: { error in
                     print("Failure👎", error)
                 })
+        AFClient.init().request(searchWord: "")
 //        job.cancel(cause: Kotlinx_coroutines_coreCancellationException(message: "Cancel"))
         
         return true
