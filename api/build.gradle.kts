@@ -8,13 +8,25 @@ plugins {
 
 kotlin {
     android()
-    ios()
+//    ios()
+    if ((System.getenv("SDK_NAME") ?: "iphonesimulator").startsWith("iphoneos")) {
+        ios {
+            iosArm64()
+        }
+    } else {
+        ios {
+            iosX64()
+        }
+    }
 
     version = "1.0.0"
+    group = "tech.watanave.kmm_playground.api"
+
     cocoapods {
         summary = "CocoaPods test library"
         homepage = "https://github.com/JetBrains/kotlin"
         ios.deploymentTarget = "13.2"
+
         pod("AFNetworking") {
             version = "~> 4.0.1"
         }
