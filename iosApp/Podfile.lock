@@ -1,16 +1,37 @@
 PODS:
-  - api (1.0.0)
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - api (1.0.0):
+    - AFNetworking (~> 4.0.1)
 
 DEPENDENCIES:
   - api (from `../api`)
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
 
 EXTERNAL SOURCES:
   api:
     :path: "../api"
 
 SPEC CHECKSUMS:
-  api: 66f2e651c15329ef078304863eff2a34f4aa83de
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  api: adb268d8f210eb18da623221ced7ed18070da9ed
 
-PODFILE CHECKSUM: deca37c75107ebea4fa55c07e5b313b7fc77d3b8
+PODFILE CHECKSUM: c2c297844b16ef171fe73180bd39a6dad5fdffe3
 
 COCOAPODS: 1.10.1
