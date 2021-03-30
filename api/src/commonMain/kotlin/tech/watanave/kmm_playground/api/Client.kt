@@ -2,13 +2,10 @@ package tech.watanave.kmm_playground.api
 
 import io.ktor.client.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.flow.flow
-import kotlinx.serialization.json.Json
+import org.koin.core.component.KoinComponent
 import tech.watanave.kmm_playground.model.Response
 
-class ApiClient {
-
-    private val httpClient: HttpClient = provideHttpClient()
+class ApiClient(private val httpClient: HttpClient): KoinComponent {
 
     suspend fun request(searchWord: String) : Response {
 
@@ -17,13 +14,3 @@ class ApiClient {
     }
 }
 
-object ApiCommon {
-    fun provideJson() : Json {
-        return Json {
-            ignoreUnknownKeys = true
-            coerceInputValues = true
-        }
-    }
-}
-
-expect fun provideHttpClient() : HttpClient
