@@ -1,34 +1,30 @@
 package tech.watanave.kmm_playground.api
 
-import io.ktor.client.*
-import io.ktor.client.engine.ios.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.flow
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import kotlin.coroutines.CoroutineContext
 
-class IosClient(private val apiClient: ApiClient) {
+interface SearchWordProvider {
 
-    val scope: CoroutineScope = object : CoroutineScope {
-        override val coroutineContext: CoroutineContext
-            get() = SupervisorJob() + Dispatchers.Default
-    }
-
-    fun requestFlow(searchWord: String) = NonNullFlowWrapper(flow {
-        emit(apiClient.request(searchWord))
-    })
-
-    fun request(searchWord: String) = NonNullSuspendWrapper {
-        apiClient.request(searchWord)
-    }
+    val word: String
 
 }
 
-actual fun provideHttpClient() : HttpClient = HttpClient(Ios) {
-    install(JsonFeature) {
-        serializer = KotlinxSerializer(ApiCommon.provideJson())
+class IosClient: KoinComponent {
+
+    val iosScope: CoroutineScope = object : CoroutineScope {
+        override val coroutineContext: CoroutineContext
+            get() = SupervisorJob() + Dispatchers.Main
     }
+
+    private val searchWordProvider: SearchWordProvider by inject()
+    private val apiClient: ApiClient by inject()
+
+    fun request() = NonNullSuspendWrapper {
+        apiClient.request(searchWordProvider.word)
+    }
+
 }

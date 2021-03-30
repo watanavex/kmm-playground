@@ -20,7 +20,8 @@ kotlin {
                 api(project(":model"))
                 implementation("io.ktor:ktor-client-core:1.5.2")
                 implementation("io.ktor:ktor-client-serialization:1.5.2")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+                implementation("io.insert-koin:koin-core:3.0.1-beta-2")
             }
         }
         val commonTest by getting {
