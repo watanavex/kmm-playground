@@ -16,22 +16,8 @@ jobs:
           java-version: '11'
       - name: Show Xcode version
         run: xcodebuild -version
-      - uses: eskatos/gradle-command-action@v1
-        with:
-          arguments: testDebugUnitTest
-          dependencies-cache-key: |
-            **/*.gradle
-            **/*.gradle.kts
-            buildSrc/src/**/*.kt
-            **/gradle.properties
-            gradle/**
-      - uses: eskatos/gradle-command-action@v1
-        with:
-          arguments: iosX64Test
-          dependencies-cache-key: |
-            **/*.gradle
-            **/*.gradle.kts
-            buildSrc/src/**/*.kt
-            **/gradle.properties
-            gradle/**
+      - name: Build Android app
+        run: ./gradlew assembleDebug
+      - name: Pack for Xcode
+        run: ./gradlew packForXcode
 
