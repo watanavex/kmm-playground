@@ -16,8 +16,7 @@ jobs:
           java-version: '11'
       - name: Show Xcode version
         run: xcodebuild -version
-      - name: Pack for Xcode
-        run: ./gradlew packForXcode --info 
       - name: Build Android app
         run: ./gradlew assembleDebug
-
+      - name: Pack for Xcode
+        run: ./gradlew packForXcode --info 
